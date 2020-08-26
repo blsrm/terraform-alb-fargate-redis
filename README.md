@@ -1,3 +1,3 @@
-# aws-ga-alb-fargate-redis
+# aws-alb-fargate-redis
 
 ![](./infra.png)
