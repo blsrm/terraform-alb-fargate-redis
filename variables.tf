@@ -58,3 +58,9 @@ variable "project" {
 variable "environment" {
   default = "Dev"
 }
+
+variable "redis_endpoint" {
+  description = "Redis hostname for deno API"
+  default = "dev.2pchsc.ng.0001.use1.cache.amazonaws.com"
+}
+

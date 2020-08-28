@@ -24,6 +24,7 @@ resource "aws_ecs_task_definition" "app" {
     "image": "${var.app_image}",
     "memory": ${var.fargate_memory},
     "name": "app",
+    "environment": [ {"name": "REDIS_HOST_NAME", "value": "dev.2pchsc.ng.0001.use1.cache.amazonaws.com" } ],
     "networkMode": "awsvpc",
     "portMappings": [
       {
