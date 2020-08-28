@@ -2,7 +2,7 @@ resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = "${substr(var.environment, 0, 3)}"
   replication_group_description = "Redis cache cluster"
   number_cache_clusters         = 2
-  node_type                     = "cache.m4.large"
+  node_type                     = "cache.t2.micro"
   engine                        = "redis"
   port                          = 6379
   security_group_ids            = ["${aws_security_group.main.id}"]
@@ -24,14 +24,21 @@ resource "aws_security_group" "main" {
   vpc_id = "${aws_vpc.main.id}"
 
   ingress {
-    from_port = 6379
-    to_port   = 6379
-    protocol  = "tcp"
-    self      = true
+    protocol        = "tcp"
+    from_port       = 6379
+    to_port         = 6379
+    security_groups = ["${aws_security_group.ecs_tasks.id}"]
+  }
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
-    Name        = "${var.project}-${var.environment}"
+    Name        = "SG for ECS elasticache"
     Environment = "${var.environment}"
     Project     = "${var.project}"
     VPC         = "${aws_vpc.main.id}"

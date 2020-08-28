@@ -18,17 +18,17 @@ variable "az_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "adongy/hostname-docker:latest"
+  default     = "hummingbirddesign/test:latest"
 }
 
 variable "app_port" {
   description = "Port exposed by the docker image to redirect traffic to"
-  default     = 3000
+  default     = 4000
 }
 
 variable "app_count" {
   description = "Number of docker containers to run"
-  default     = 3
+  default     = 1
 }
 
 variable "fargate_cpu" {
@@ -43,12 +43,12 @@ variable "fargate_memory" {
 
 variable "tag_owner" {
   description = "Owner of all resources (Tag)"
-  default = "LDC"
+  default = "hom"
 }
 
 variable "tag_usage" {
   description = "Usage of resources (Tag)"
-  default = "IaaC"
+  default = "serverless"
 }
 
 variable "project" {
